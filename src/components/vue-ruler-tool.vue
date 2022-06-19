@@ -2,10 +2,10 @@
   <div :style="wrapperStyle" class="vue-ruler-wrapper" onselectstart="return false;">
     <section v-show="rulerToggle">
       <div ref="horizontalRuler" class="vue-ruler-h" @mousedown.stop="horizontalDragRuler">
-        <span v-for="(item,index) in xScale" :key="index" :style="{left:index * 50 + 2 + 'px'}" class="n">{{ item.id }}</span>
+        <span v-for="(item,index) in xScale" :key="index" :style="{left:index * 50 + 'px'}" class="n">{{ item.id }}</span>
       </div>
       <div ref="verticalRuler" class="vue-ruler-v" @mousedown.stop="verticalDragRuler">
-        <span v-for="(item,index) in yScale" :key="index" :style="{top:index * 50 + 2 + 'px'}" class="n">{{ item.id }}</span>
+        <span v-for="(item,index) in yScale" :key="index" :style="{top:index * 50 + 'px'}" class="n">{{ item.id }}</span>
       </div>
       <div :style="{top:verticalDottedTop + 'px'}" class="vue-ruler-ref-dot-h" />
       <div :style="{left:horizontalDottedLeft + 'px'}" class="vue-ruler-ref-dot-v" />
@@ -391,9 +391,10 @@ export default {
   &-v .n,
   &-h .n {
     position: absolute;
-    font: 10px/1 Arial, sans-serif;
-    color: #333;
+    font: 12px Arial, sans-serif;
+    color: rgb(0, 0, 0);
     cursor: default;
+    transform: scale(0.75);
   }
 
   &-v .n {
