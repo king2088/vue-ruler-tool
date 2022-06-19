@@ -10,6 +10,7 @@
         :parent="true"
         :is-scale-revise="true"
         :visible.sync="visible"
+        :zoomScale="1"
       >
         <img src="https://cn.vuejs.org/images/logo.png" style="width: 300px;height: 300px;margin: 100px;" alt="">
          <!--<iframe src="https://www.baidu.com" width="500" height="300" />-->

@@ -67,7 +67,11 @@ export default {
       type: Number,
       default: 50,
       validator: (val) => val % 10 === 0
-    } // 步长
+    }, // 步长
+    zoomScale: {
+      type: Number,
+      default: 1
+    } // 比例尺刻度缩放倍数
   },
   data () {
     return {
@@ -190,14 +194,14 @@ export default {
     getCalc (array,length) {
       for (let i = 0; i < length * this.stepLength / 50; i += this.stepLength) {
         if (i % this.stepLength === 0) {
-          array.push({ id: i })
+          array.push({ id: i * this.zoomScale })
         }
       }
     }, // 获取刻度方法
     getCalcRevise (array,length) {
       for (let i = 0; i < length; i += 1) {
         if (i % this.stepLength === 0 && i + this.stepLength <= length) {
-          array.push({ id: i })
+          array.push({ id: i * this.zoomScale })
         }
       }
     }, // 获取矫正刻度方法
@@ -239,18 +243,22 @@ export default {
         const cloneList = JSON.parse(JSON.stringify(this.value))
         switch (this.dragFlag) {
           case 'x':
-            cloneList.push({
-              type: 'h',
-              site: ($event.pageY - this.topSpacing - this.size) * (this.stepLength / 50)
-            })
-            this.$emit('input', cloneList)
+            if ($event.pageY - this.topSpacing > this.size) {
+              cloneList.push({
+                type: 'h',
+                site: ($event.pageY - this.topSpacing - this.size) * (this.stepLength / 50)
+              })
+              this.$emit('input', cloneList)
+            }
             break
           case 'y':
-            cloneList.push({
-              type: 'v',
-              site: ($event.pageX - this.leftSpacing - this.size) * (this.stepLength / 50)
-            })
-            this.$emit('input', cloneList)
+            if ($event.pageX - this.leftSpacing > this.size) {
+              cloneList.push({
+                type: 'v',
+                site: ($event.pageX - this.leftSpacing - this.size) * (this.stepLength / 50)
+              })
+              this.$emit('input', cloneList)
+            }
             break
           case 'h':
             this.dragCalc(cloneList, $event.pageY, this.topSpacing, this.rulerHeight,'h')

@@ -157,6 +157,8 @@ this.$refs.rulerTool.quickGeneration(params)
 ```
 ### 优化项
 - [x] 标尺与窗口间距
+- [x] 标尺内禁止出现辅助线
+- [x] 增加刻度值缩放（仅数组缩放，刻度无法缩放）
 ## Build Setup
 
 ``` bash
