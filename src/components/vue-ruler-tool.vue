@@ -194,14 +194,14 @@ export default {
     getCalc (array,length) {
       for (let i = 0; i < length * this.stepLength / 50; i += this.stepLength) {
         if (i % this.stepLength === 0) {
-          array.push({ id: i * this.zoomScale })
+          array.push({ id: Math.floor(i * this.zoomScale) })
         }
       }
     }, // 获取刻度方法
     getCalcRevise (array,length) {
       for (let i = 0; i < length; i += 1) {
         if (i % this.stepLength === 0 && i + this.stepLength <= length) {
-          array.push({ id: i * this.zoomScale })
+          array.push({ id: Math.floor(i * this.zoomScale) })
         }
       }
     }, // 获取矫正刻度方法
